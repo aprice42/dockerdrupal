@@ -1,24 +1,22 @@
 version: '3'
 
 services:
-  db:
-#    image: drupaldocker/mariadb
-    image: mysql:5.7
+  database:
+    image: drupaldocker/mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root1
       MYSQL_DATABASE: drupal
-      MYSQL_USER: root
+      MYSQL_USER: drupal
       MYSQL_PASSWORD: meh
     ports:
       - "9906:3306"
   web:
-#    image: drupaldocker/php:7.2-apache
-    image: php:7.2.2-apache
+    image: drupaldocker/php:7.2-apache
     container_name: php_web
     links:
       - db
     volumes:
-      - ./php:/var/www/html/
+      - ./app:/var/www/html/
     ports:
       - "8100:80"
     stdin_open: true
