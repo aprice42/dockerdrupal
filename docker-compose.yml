@@ -11,11 +11,12 @@ services:
     ports:
       - "9906:3306"
   web:
-    image: drupaldocker/php:7.2-apache
+    image: aprice42/drupalphp:latest
     container_name: php_web
     links:
       - db
     volumes:
+    # set ./app to name of root directory containing project files
       - ./app:/var/www/html/
     ports:
       - "8100:80"
